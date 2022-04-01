@@ -64,7 +64,7 @@
 		<div class="scoresContainer">
 			<div class="scores">
 				{#each scores.length > doublesScores.length ? scores : doublesScores as score, i}
-					<span class="box">{i+1}</span>
+					<span class="box noborder">{i+1}</span>
 				{/each}
 			</div>
 			<div class="scores">
@@ -111,10 +111,13 @@
 	.border {
 		border: 1px solid black;
 	}
+	.noborder {
+		border: 1px solid rgba(0, 0, 0, 0); /* make things in line when a bunch are in a row */
+	}
 	.scores:nth-child(3) .border:not(.readd) {
 		border-top: none;
 	}
-	.border:not(:nth-child(1)) {
+	.box:not(:nth-child(1)) {
 		border-left: none;
 	}
 	#buttons button, #dbuttons button {
