@@ -63,18 +63,18 @@
 		</div>
 		<div class="scoresContainer">
 			<div class="scores">
+				{#each scores.length > doublesScores.length ? scores : doublesScores as score, i}
+					<span class="box">{i+1}</span>
+				{/each}
+			</div>
+			<div class="scores">
 				{#each scores as score, i}
-					<div class="score">
-						<span>{i+1}</span>
-						<span class="box">{score}</span>
-					</div>
+					<span class="box border">{score}</span>
 				{/each}
 			</div>
 			<div class="scores">
 				{#each doublesScores as score, i}
-					<div class="score">
-						<span class="box">{score}</span>
-					</div>
+					<span class={"box border" + (i >= scores.length ? " readd" : "")}>{score}</span>
 				{/each}
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 		margin-left: 3px;
 		margin-right: 3px;
 	}
-	.score, .scoresContainer {
+	.box, .scoresContainer {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -107,11 +107,15 @@
 	.box {
 		width: 3ch;
 		height: 3ch;
+	}
+	.border {
 		border: 1px solid black;
-		text-align: center;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	}
+	.scores:nth-child(3) .border:not(.readd) {
+		border-top: none;
+	}
+	.border:not(:nth-child(1)) {
+		border-left: none;
 	}
 	#buttons button, #dbuttons button {
 		min-width: 3ch;
